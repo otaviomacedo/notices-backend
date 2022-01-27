@@ -56,8 +56,8 @@ export class NoticesStack extends Stack {
     const bucket = new s3.Bucket(this, 'DataSource');
 
     const hostedZone = route53.HostedZone.fromHostedZoneAttributes(this, 'hostedZone', {
-      hostedZoneId: 'Z07404673IUTK24ZA0GMQ',
-      zoneName: 'cdk.dev-tools.aws.dev',
+      hostedZoneId: 'Z03293092ULKW7Z8X2WE3',
+      zoneName: 'dev-otaviom.notices.cdk.dev-tools.aws.dev',
     });
 
     let domainName = `${props.name}.notices.cdk.dev-tools.aws.dev`;
