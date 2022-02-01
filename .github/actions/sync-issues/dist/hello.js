@@ -5,3 +5,4 @@ function hello() {
     console.log('Hello!!');
 }
 exports.hello = hello;
+hello();

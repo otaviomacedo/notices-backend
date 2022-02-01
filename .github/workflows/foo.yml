@@ -1,7 +1,7 @@
 name: foo
 on: [push]
 jobs:
-  check-bats-version:
+  sync:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -9,3 +9,5 @@ jobs:
         with:
           node-version: '16'
       - uses: ./.github/actions/sync-issues
+        with:
+          github_token: 'foobar'
