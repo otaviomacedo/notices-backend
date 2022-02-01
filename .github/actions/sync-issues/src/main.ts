@@ -5,7 +5,9 @@ import { promises as fs } from 'fs';
 async function run(): Promise<void> {
   const content = await fs.readFile('./data/notices.json', 'utf8');
   const notices = JSON.parse(content).notices;
-  await updateIssue(notices[0]);
+  for (const notice of notices) {
+    await updateIssue(notice);
+  }
 }
 
 async function updateIssue(notice: any) {
