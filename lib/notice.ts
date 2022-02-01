@@ -8,7 +8,7 @@ export interface Component {
   version: string,
 }
 
-export interface Notices {
+export interface Notice {
   title:  string,
   issueUrl: string,
   overview: string,
@@ -16,11 +16,11 @@ export interface Notices {
   schemaVersion: string,
 }
 
-export function validateNotices(notices: Notices[]): void {
+export function validateNotices(notices: Notice[]): void {
   notices.forEach(validateNotice);
 }
 
-export function validateNotice(notice: Notices): void {
+export function validateNotice(notice: Notice): void {
   if (notice.title.length > MAX_TITLE_LENGTH) {
     throw new Error(`Maximum allowed title length is ${MAX_TITLE_LENGTH}. Title ${notice.title} is ${notice.title.length} characters long`);
   }

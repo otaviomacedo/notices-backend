@@ -1,4 +1,4 @@
-import { validateNotice, validateNotices } from '../lib/notices';
+import { validateNotice, validateNotices } from '../lib/notice';
 
 test('accepts valid notice', () => {
   expect(() => validateNotice({

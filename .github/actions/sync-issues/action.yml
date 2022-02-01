@@ -5,6 +5,9 @@ inputs:
   github_token:
     description: A GitHub token.
     required: true
+  repo:
+    description: The repositrory identifier
+    required: true
 runs:
   using: node16
   main: dist/hello.js

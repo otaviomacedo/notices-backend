@@ -11,3 +11,4 @@ jobs:
       - uses: ./.github/actions/sync-issues
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          repo: 'otaviomacedo/notices-backend'
