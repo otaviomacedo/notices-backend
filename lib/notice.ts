@@ -10,7 +10,7 @@ export interface Component {
 
 export interface Notice {
   title:  string,
-  issueUrl: string,
+  issueNumber: number,
   overview: string,
   components: Component[],
   schemaVersion: string,
@@ -23,10 +23,6 @@ export function validateNotices(notices: Notice[]): void {
 export function validateNotice(notice: Notice): void {
   if (notice.title.length > MAX_TITLE_LENGTH) {
     throw new Error(`Maximum allowed title length is ${MAX_TITLE_LENGTH}. Title ${notice.title} is ${notice.title.length} characters long`);
-  }
-
-  if (!isValidGitHubUrl(notice.issueUrl)) {
-    throw new Error(`${notice.issueUrl} is not a valid AWS CDK issue URL`);
   }
 
   for (const component of notice.components) {

@@ -1,5 +1,8 @@
-name: foo
-on: [push]
+name: update-issue
+on:
+  push:
+    branches:
+      - 'main'
 jobs:
   sync:
     runs-on: ubuntu-latest

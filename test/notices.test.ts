@@ -3,7 +3,7 @@ import { validateNotice, validateNotices } from '../lib/notice';
 test('accepts valid notice', () => {
   expect(() => validateNotice({
     title:  "Toggling off auto_delete_objects for Bucket empties the bucket",
-    issueUrl: "https://github.com/aws/aws-cdk/issues/16603",
+    issueNumber: 16603,
     overview: "If a stack is deployed with an S3 bucket with auto_delete_objects=True, and then re-deployed with auto_delete_objects=False, all the objects in the bucket will be deleted.",
     components: [{
       name: "framework",
@@ -13,23 +13,10 @@ test('accepts valid notice', () => {
   })).not.toThrow();
 });
 
-test('rejects invalid AWS CDK issue URL', () => {
-  expect(() => validateNotice({
-    title:  "Toggling off auto_delete_objects for Bucket empties the bucket",
-    issueUrl: "https://github.com/aws/jsii/issues/2314",
-    overview: "If a stack is deployed with an S3 bucket with auto_delete_objects=True, and then re-deployed with auto_delete_objects=False, all the objects in the bucket will be deleted.",
-    components: [{
-      name: "framework",
-      version: "<=1.125.0"
-    }],
-    schemaVersion: "1"
-  })).toThrow(/is not a valid AWS CDK issue URL/);
-});
-
 test('rejects too long titles', () => {
   expect(() => validateNotice({
     title:  "Toggling off auto_delete_objects for Bucket empties the bucket. This title should be rejected, as its length exceeds the maximum allowed length",
-    issueUrl: "https://github.com/aws/aws-cdk/issues/16603",
+    issueNumber: 16603,
     overview: "If a stack is deployed with an S3 bucket with auto_delete_objects=True, and then re-deployed with auto_delete_objects=False, all the objects in the bucket will be deleted.",
     components: [{
       name: "framework",
@@ -42,7 +29,7 @@ test('rejects too long titles', () => {
 test('rejects invalid component names', () => {
   expect(() => validateNotice({
     title:  "Toggling off auto_delete_objects for Bucket empties the bucket",
-    issueUrl: "https://github.com/aws/aws-cdk/issues/16603",
+    issueNumber: 16603,
     overview: "If a stack is deployed with an S3 bucket with auto_delete_objects=True, and then re-deployed with auto_delete_objects=False, all the objects in the bucket will be deleted.",
     components: [{
       name: "website",
@@ -55,7 +42,7 @@ test('rejects invalid component names', () => {
 test('rejects invalid component version range', () => {
   expect(() => validateNotice({
     title:  "Toggling off auto_delete_objects for Bucket empties the bucket",
-    issueUrl: "https://github.com/aws/aws-cdk/issues/16603",
+    issueNumber: 16603,
     overview: "If a stack is deployed with an S3 bucket with auto_delete_objects=True, and then re-deployed with auto_delete_objects=False, all the objects in the bucket will be deleted.",
     components: [{
       name: "cli",
@@ -68,7 +55,7 @@ test('rejects invalid component version range', () => {
 test('rejects invalid schema version range', () => {
   expect(() => validateNotice({
     title:  "Toggling off auto_delete_objects for Bucket empties the bucket",
-    issueUrl: "https://github.com/aws/aws-cdk/issues/16603",
+    issueNumber: 16603,
     overview: "If a stack is deployed with an S3 bucket with auto_delete_objects=True, and then re-deployed with auto_delete_objects=False, all the objects in the bucket will be deleted.",
     components: [{
       name: "cli",
