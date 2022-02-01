@@ -16,11 +16,11 @@ async function foo(notice: any) {
     const body = notice.overview;
     const client = github.getOctokit(githubToken);
     await client.issues.update({
-      owner: owner,
-      repo: repo,
+      owner,
+      repo,
       issue_number: 2,
-      title: title,
-      body: 'TESTESTSTSTS',
+      title,
+      body,
       labels: ['p0', 'management/tracking'],
     });
   } catch (e) {
