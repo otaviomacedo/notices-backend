@@ -18,13 +18,26 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.hello = void 0;
 // import * as github from '@actions/github';
 const core = __importStar(require("@actions/core"));
+const { promises: fs } = require('fs');
 function hello() {
-    const githubToken = core.getInput('github_token', { required: true });
-    console.log(githubToken);
+    return __awaiter(this, void 0, void 0, function* () {
+        // const githubToken = core.getInput('github_token', { required: true });
+        const content = yield fs.readFile('./data/notices.json', 'utf8');
+        console.log(content);
+    });
 }
 exports.hello = hello;
-hello();
+hello().catch(err => core.setFailed(err.message));
