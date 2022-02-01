@@ -44,13 +44,15 @@ function foo(notice) {
             const githubToken = core.getInput('github_token', { required: true });
             const [owner, repo] = core.getInput('repo').split('/');
             const title = notice.title;
+            const body = notice.overview;
             const client = github.getOctokit(githubToken);
-            yield client.issues.create({
+            yield client.issues.update({
                 owner: owner,
                 repo: repo,
+                issue_number: 2,
                 title: title,
                 body: 'TESTESTSTSTS',
-                labels: ['p0'],
+                labels: ['p0', 'management/tracking'],
             });
         }
         catch (e) {

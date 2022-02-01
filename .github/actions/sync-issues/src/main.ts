@@ -13,13 +13,15 @@ async function foo(notice: any) {
     const githubToken = core.getInput('github_token', { required: true });
     const [owner, repo] = core.getInput('repo').split('/');
     const title = notice.title;
+    const body = notice.overview;
     const client = github.getOctokit(githubToken);
-    await client.issues.create({
+    await client.issues.update({
       owner: owner,
       repo: repo,
+      issue_number: 2,
       title: title,
       body: 'TESTESTSTSTS',
-      labels: ['p0'],
+      labels: ['p0', 'management/tracking'],
     });
   } catch (e) {
     core.error(e);
