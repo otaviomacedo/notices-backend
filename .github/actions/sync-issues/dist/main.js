@@ -34,25 +34,30 @@ const fs_1 = require("fs");
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         const content = yield fs_1.promises.readFile('./data/notices.json', 'utf8');
+        console.log(content);
         const notices = JSON.parse(content).notices;
-        yield foo(notices[0]);
+        for (const notice of notices) {
+            yield updateIssue(notice);
+        }
     });
 }
-function foo(notice) {
+function updateIssue(notice) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const githubToken = core.getInput('github_token', { required: true });
             const [owner, repo] = core.getInput('repo').split('/');
             const title = notice.title;
             const body = notice.overview;
+            const issueNumber = notice.issueNumber;
+            const labels = ['p0', 'management/tracking'];
             const client = github.getOctokit(githubToken);
             yield client.issues.update({
                 owner,
                 repo,
-                issue_number: 2,
+                issue_number: issueNumber,
                 title,
                 body,
-                labels: ['p0', 'management/tracking'],
+                labels,
             });
         }
         catch (e) {
