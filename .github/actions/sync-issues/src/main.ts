@@ -5,10 +5,10 @@ import { promises as fs } from 'fs';
 async function run(): Promise<void> {
   const content = await fs.readFile('./data/notices.json', 'utf8');
   const notices = JSON.parse(content).notices;
-  await foo(notices[0]);
+  await updateIssue(notices[0]);
 }
 
-async function foo(notice: any) {
+async function updateIssue(notice: any) {
   try {
     const githubToken = core.getInput('github_token', { required: true });
     const [owner, repo] = core.getInput('repo').split('/');
