@@ -56,6 +56,9 @@ interface StaticWebsiteProps {
   sources: s3deploy.ISource[],
 }
 
+/**
+ * A website with a custom domain name.
+ */
 class StaticWebsite extends Construct {
   constructor(scope: Construct, id: string, props: StaticWebsiteProps) {
     super(scope, id);
