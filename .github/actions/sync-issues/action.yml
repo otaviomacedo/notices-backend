@@ -1,0 +1,13 @@
+name: Sync Issues
+description: Creates or updates p0 issues based on the notices file
+author: Otavio Macedo
+inputs:
+  github_token:
+    description: A GitHub token.
+    required: true
+runs:
+  using: node16
+  main: dist/hello.js
+branding:
+  icon: file-text
+  color: green

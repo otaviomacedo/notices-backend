@@ -1,0 +1,11 @@
+{
+  "name": "sync-issues",
+  "version": "1.0.0",
+  "description": "Creates or updates p0 issues based on the notices file",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

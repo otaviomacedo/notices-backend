@@ -1,0 +1,11 @@
+name: foo
+on: [push]
+jobs:
+  check-bats-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - uses: otaviomacedo/notices-backend/actions/sync-issues
