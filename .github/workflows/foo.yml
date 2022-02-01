@@ -10,4 +10,4 @@ jobs:
           node-version: '16'
       - uses: ./.github/actions/sync-issues
         with:
-          github_token: 'foobar'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
