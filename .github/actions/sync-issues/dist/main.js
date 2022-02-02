@@ -45,8 +45,8 @@ function updateIssue(notice) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const client = new rest_1.Octokit({
-                authStrategy: auth_app_1.createAppAuth({
-                    installationId: 22878443,
+                authStrategy: auth_app_1.createAppAuth,
+                auth: {
                     appId: 169197,
                     privateKey: `-----BEGIN RSA PRIVATE KEY-----
 MIIEpAIBAAKCAQEA6cDrjeZyu3BFn+Yn6RwbvGrpIC7Aai5Htcvo6GU4Vd0JZavC
@@ -77,8 +77,9 @@ GikHEvWOblfzeMQywK6WiROoxwQPIXN7rdjaXsya9V9rb6qwnyNdKQ==
 -----END RSA PRIVATE KEY-----
 `,
                     clientId: "Iv1.8a7a56e67a2e2c27",
-                    clientSecret: "85b1aae0e843fab34b625a3a08d58c2c49c8299a"
-                }),
+                    clientSecret: "85b1aae0e843fab34b625a3a08d58c2c49c8299a",
+                    installationId: 22878443,
+                },
             });
             // const githubToken = core.getInput('github_token', { required: true });
             // const client = github.getOctokit(githubToken);
