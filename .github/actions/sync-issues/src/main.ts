@@ -1,4 +1,3 @@
-import * as github from '@actions/github';
 import * as core from '@actions/core';
 import { createAppAuth } from "@octokit/auth-app";
 import { Octokit } from '@octokit/rest';
@@ -14,13 +13,17 @@ async function run(): Promise<void> {
 
 async function updateIssue(notice: any) {
   try {
+    // These are the credentials of a GitHub app installed in the repository where website is hosted
     const client = new Octokit({
       authStrategy: createAppAuth,
+      auth: {
+        appId: 169197,
+        privateKey: `-----BEGIN RSA PRIVATE KEY-----...`,
+        clientId: "Iv1.8a7a56e67a2e2c27",
+        clientSecret: "blablablabalbalbal",
+        installationId: 22878443,
+      },
     });
-
-
-    // const githubToken = core.getInput('github_token', { required: true });
-    // const client = github.getOctokit(githubToken);
 
     const [owner, repo] = core.getInput('repo').split('/');
 

@@ -43,7 +43,7 @@ class WebsiteStage extends Stage {
   constructor(scope: Construct, id: string, props: NoticesBackendProps) {
     super(scope, id, props);
 
-    new WebsiteStack(this, 'NoticesStack', {name: props.name});
+    new WebsiteStack(this, 'WebsiteStack', {name: props.name});
   }
 }
 
