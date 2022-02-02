@@ -1,13 +1,15 @@
 import { Stack, StackProps, Stage, StageProps } from 'aws-cdk-lib';
+import * as acm from 'aws-cdk-lib/aws-certificatemanager';
 import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
 import * as origins from 'aws-cdk-lib/aws-cloudfront-origins';
-import * as acm from 'aws-cdk-lib/aws-certificatemanager';
+import * as iam from 'aws-cdk-lib/aws-iam';
+import { AccountPrincipal, Effect } from 'aws-cdk-lib/aws-iam';
+import * as route53 from 'aws-cdk-lib/aws-route53';
 import { RecordTarget } from 'aws-cdk-lib/aws-route53';
+import * as targets from 'aws-cdk-lib/aws-route53-targets';
 import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment';
 import * as pipelines from 'aws-cdk-lib/pipelines';
-import * as route53 from 'aws-cdk-lib/aws-route53';
-import * as targets from 'aws-cdk-lib/aws-route53-targets';
 import { Construct } from 'constructs';
 
 export class PipelineStack extends Stack {
@@ -15,12 +17,19 @@ export class PipelineStack extends Stack {
     super(scope, id, props);
 
     const pipeline = new pipelines.CodePipeline(this, 'Pipeline', {
-      synth: new pipelines.ShellStep('Synth', {
+      synth: new pipelines.CodeBuildStep('Synth', {
         input: pipelines.CodePipelineSource.gitHub('otaviomacedo/notices-backend', 'main'),
         commands: [
           'npm ci',
           'npm run build',
           'npx cdk synth',
+        ],
+        rolePolicyStatements: [
+          new iam.PolicyStatement({
+            actions: ['route53:ListHostedZonesByName'],
+            effect: Effect.ALLOW,
+            resources: ['*']
+          }),
         ],
       }),
     });
