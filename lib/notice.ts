@@ -40,11 +40,6 @@ export function validateNotice(notice: Notice): void {
   }
 }
 
-function isValidGitHubUrl(url: string): boolean {
-  const issueUrlRegex = /https:\/\/github.com\/aws\/aws-cdk\/issues\/\d+/;
-  return issueUrlRegex.test(url)
-}
-
 function isValidSemverRange(range: string): boolean {
   try {
     new semver.Range(range);

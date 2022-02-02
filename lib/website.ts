@@ -12,6 +12,8 @@ import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment';
 import * as pipelines from 'aws-cdk-lib/pipelines';
 import { Construct } from 'constructs';
 
+// TODO Put the pipeline and the application code in different files
+
 export class PipelineStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
@@ -24,6 +26,7 @@ export class PipelineStack extends Stack {
           'npm run build',
           'npx cdk synth',
         ],
+        // TODO https://docs.aws.amazon.com/cdk/api/v1/docs/pipelines-readme.html#context-lookups
         rolePolicyStatements: [
           new iam.PolicyStatement({
             actions: ['route53:ListHostedZonesByName'],
@@ -34,12 +37,14 @@ export class PipelineStack extends Stack {
       }),
     });
 
+    // TODO Add a validation step (part of the build) and in the PR
+
     pipeline.addStage(new WebsiteStage(this, 'alpha', {
       env: {
         account: '280619947791',
         region: 'us-east-1',
       },
-      name: 'dev-otaviom' // gamma and prod in the future
+      name: 'dev-otaviom' // TODO remove this and keep a single stage
     }));
   }
 }
@@ -57,7 +62,7 @@ class WebsiteStage extends Stage {
 }
 
 interface NoticesBackendStackProps extends StackProps {
-  name: string,
+  name: string, // TODO Make this the full domain name
 }
 
 interface StaticWebsiteProps {
@@ -74,7 +79,7 @@ class StaticWebsite extends Construct {
 
     const bucket = new s3.Bucket(this, 'DataSource');
 
-    let domainName = props.domainName;
+    const domainName = props.domainName;
 
     const hostedZone = route53.HostedZone.fromLookup(this, 'hostedZone', {
       domainName,
@@ -110,7 +115,7 @@ export class WebsiteStack extends Stack {
     super(scope, id, props);
 
     new StaticWebsite(this, 'website', {
-      domainName: `${props.name}.notices.cdk.dev-tools.aws.dev`,
+      domainName: `cli.cdk.dev-tools.aws.dev`,
       sources: [s3deploy.Source.asset('./data')],
     });
   }
