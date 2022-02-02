@@ -9,8 +9,9 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
-    "@actions/core": "^1.2.6",
-    "@actions/github": "^4.0.0",
-    "@octokit/rest": "^18.0.9"
+    "@actions/core": "1.2.6",
+    "@actions/github": "4.0.0",
+    "@octokit/rest": "18.0.9",
+    "@octokit/auth-app": "3.6.1"
   }
 }
