@@ -15,8 +15,8 @@ async function run(): Promise<void> {
 async function updateIssue(notice: any) {
   try {
     const client = new Octokit({
-      authStrategy: createAppAuth,
-      auth: {
+      authStrategy: createAppAuth({
+        installationId: 22878443,
         appId: 169197,
         privateKey: `-----BEGIN RSA PRIVATE KEY-----
 MIIEpAIBAAKCAQEA6cDrjeZyu3BFn+Yn6RwbvGrpIC7Aai5Htcvo6GU4Vd0JZavC
@@ -47,8 +47,8 @@ GikHEvWOblfzeMQywK6WiROoxwQPIXN7rdjaXsya9V9rb6qwnyNdKQ==
 -----END RSA PRIVATE KEY-----
 `,
         clientId: "Iv1.8a7a56e67a2e2c27",
-        clientSecret: "85b1aae0e843fab34b625a3a08d58c2c49c8299a",
-      },
+        clientSecret: "85b1aae0e843fab34b625a3a08d58c2c49c8299a"
+      }),
     });
 
 
