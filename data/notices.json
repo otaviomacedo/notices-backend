@@ -1,7 +1,7 @@
 {
   "notices": [{
     "title":  "Toggling off auto_delete_objects for Bucket empties the bucket",
-    "issueNumber": 16603,
+    "issueNumber": 1,
     "overview": "If a stack is deployed with an S3 bucket with auto_delete_objects=True, and then re-deployed with auto_delete_objects=False, all the objects in the bucket will be deleted.",
     "components": [{
       "name": "framework",
