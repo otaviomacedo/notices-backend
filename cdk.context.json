@@ -1,6 +1,6 @@
 {
-  "hosted-zone:account=280619947791:domainName=dev-otaviom.notices.cdk.dev-tools.aws.dev:region=us-east-1": {
-    "Id": "/hostedzone/Z03293092ULKW7Z8X2WE3",
-    "Name": "dev-otaviom.notices.cdk.dev-tools.aws.dev."
+  "hosted-zone:account=280619947791:domainName=dev-otaviom.cdk.dev-tools.aws.dev:region=us-east-1": {
+    "Id": "/hostedzone/Z10230931F1H33FXLZ1BA",
+    "Name": "dev-otaviom.cdk.dev-tools.aws.dev."
   }
 }
