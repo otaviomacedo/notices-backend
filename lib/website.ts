@@ -39,7 +39,7 @@ export class PipelineStack extends Stack {
         account: '280619947791',
         region: 'us-east-1',
       },
-      name: 'alpha'
+      name: 'dev-otaviom' // gamma and prod in the future
     }));
   }
 }
