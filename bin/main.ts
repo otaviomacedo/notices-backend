@@ -6,7 +6,7 @@ import { WebsiteStack } from '../lib/website';
 
 const app = new cdk.App();
 
-new PipelineStack(app, 'PipelineStack', {
+new PipelineStack(app, 'NoticesPipelineStack', {
   env: {
     account: BACKEND_ACCOUNT,
     region: BACKEND_REGION
@@ -19,7 +19,7 @@ new PipelineStack(app, 'PipelineStack', {
  * You need to have a hosted zone in the personal account for the domain name
  * specified below.
  */
-new WebsiteStack(app, 'WebsiteStack', {
+new WebsiteStack(app, 'NoticesWebsiteStack', {
   domainName: `dev-${process.env.USER}.cdk.dev-tools.aws.dev`,
   env: {
     account: process.env.CDK_DEPLOY_ACCOUNT || process.env.CDK_DEFAULT_ACCOUNT,
