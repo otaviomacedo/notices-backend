@@ -24,7 +24,7 @@ export class PipelineStack extends Stack {
       }),
     });
 
-    pipeline.addStage(new WebsiteStage(this, 'alpha', {
+    pipeline.addStage(new WebsiteStage(this, 'prod', {
       env: {
         account: BACKEND_ACCOUNT,
         region: BACKEND_REGION,
