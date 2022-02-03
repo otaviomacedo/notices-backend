@@ -6,7 +6,7 @@ import { WebsiteStack } from '../lib/website';
 
 const app = new cdk.App();
 
-new PipelineStack(app, 'NoticesPipeline', {
+new PipelineStack(app, 'PipelineStack', {
   env: {
     account: BACKEND_ACCOUNT,
     region: BACKEND_REGION
