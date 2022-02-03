@@ -19,7 +19,6 @@ export class PipelineStack extends Stack {
           'npm ci',
           'npm run build',
           'npm test',
-          'npx cdk synth --verbose',
         ],
       }),
     });
