@@ -1,19 +1,28 @@
 #!/usr/bin/env node
 import * as cdk from 'aws-cdk-lib';
 import 'source-map-support/register';
-import { PipelineStack } from '../lib/pipeline';
+import { BACKEND_ACCOUNT, BACKEND_REGION, PipelineStack } from '../lib/pipeline';
 import { WebsiteStack } from '../lib/website';
 
 const app = new cdk.App();
 
 new PipelineStack(app, 'NoticesPipeline', {
-  env: { account: '280619947791', region: 'us-east-1' },
+  env: {
+    account: BACKEND_ACCOUNT,
+    region: BACKEND_REGION
+  },
 });
 
+/**
+ * Use this stack to deploy to a personal account with `cdk deploy WebsiteStack`
+ *
+ * You need to have a hosted zone in the personal account for the domain name
+ * specified below.
+ */
 new WebsiteStack(app, 'WebsiteStack', {
-  domainName: 'dev-otaviom.cdk.dev-tools.aws.dev',
+  domainName: `dev-${process.env.USER}.cdk.dev-tools.aws.dev`,
   env: {
-    account: '280619947791',
-    region: 'us-east-1'
+    account: process.env.CDK_DEPLOY_ACCOUNT || process.env.CDK_DEFAULT_ACCOUNT,
+    region: process.env.CDK_DEPLOY_REGION || process.env.CDK_DEFAULT_REGION
   },
 });
